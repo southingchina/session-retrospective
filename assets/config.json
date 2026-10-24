@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "vault_root": "./example-vault",
+  "board_name": "AI协作复盘",
+  "work_root": "./work",
+  "max_lessons_per_session": 5,
+  "default_recall_limit": 5,
+  "mandatory_compare_directories": [
+    "经验规则",
+    "待验证",
+    "对话复盘"
+  ],
+  "background_search_enabled": true
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "复盘入库"
+  short_description: "整理对话弯路，比较已有经验并生成可确认的安全写入方案"
+  default_prompt: "请使用 $session-retrospective 复盘当前对话，先比较已有知识，再生成中文写入草稿。"
+policy:
+  allow_implicit_invocation: false
