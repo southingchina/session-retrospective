@@ -1,18 +1,18 @@
-# Session Retrospective · AI 协作复盘
+# Session Retrospective
 
-把一次 AI 协作中的错误、证据和改进整理成可检索的本地经验库。提供 Codex Skill 和纯 Python 存储工具：**先生成草稿与比较结果，再展示带哈希的写入计划，确认后写入 Obsidian**。
+[English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português (Brasil)](README.pt-BR.md)
 
-## 能做什么
+Turn evidence from AI collaboration into a searchable local experience library. The Codex Skill and standard-library Python tool separate drafts, verified lessons, links and conflicts; compare existing notes, present a hash-bound write plan, and write only after confirmation. Read-only search, index rebuilding, backups and evidence templates are included.
 
-- 区分已验证经验、候选经验、关联、冲突及失效条件。
-- 比较已有内容，生成明确的新增/合并/关联计划；相似度不直接决定合并。
-- 使用完整计划哈希确认写入，并检测过期计划、路径越界与内容变化。
-- 只读检索、索引重建、写入后校验及备份。
-- 提供 MOC、证据账本、原子草稿和未决问题模板。
+## Requirements
 
-## 要求与快速开始
+Python 3.10+
 
-Python 3.10+，仅标准库；Markdown 目录即可使用，Obsidian 是可选的阅读界面。以下命令从仓库根目录执行，只创建示例库：
+## Configuration and entry points
+
+`assets/config.json: vault_root, work_root`, `SKILL.md`, `$session-retrospective`
+
+## Installation and usage
 
 ```shell
 git clone https://github.com/southingchina/session-retrospective.git
@@ -22,24 +22,26 @@ python scripts/retrospective_store.py search --vault ./example-vault --query "�
 python scripts/retrospective_store.py --help
 ```
 
-### 在 Codex 中使用
-
-将本仓库复制到你的 Codex skills 目录下的 `session-retrospective/`。使用前将 `assets/config.json` 的 `vault_root`、`work_root` 改为你自己的绝对路径；随仓库的相对路径只用于演示。当前 Skill 默认手动调用，可说“复盘一下”“总结弯路”“查经验：浏览器连接”，也可点名 `$session-retrospective`。
-
-主要命令：`init`、`search`、`compare`、`plan`、`apply`、`validate`、`rebuild-index`。每条命令的参数见 `--help`。`apply` 必须给出已展示计划的完整 `--confirm-hash`；示例库、草稿和真实知识库请分开放置。
-
-## 项目结构
-
-`SKILL.md` 为助手工作流；`scripts/retrospective_store.py` 为确定性存储层；`assets/` 为模板与示例配置；`references/` 定义数据协议；`tests/` 使用临时目录验证行为。
-
-## 验证与限制
 
 ```shell
 python -m unittest discover -s tests -v
 ```
 
-公开版包含脱敏测试和空白模板，不含真实对话、用户经验库或交接快照。草稿提炼和灰区语义判断由调用它的助手完成，本项目不包含模型服务，也不保证自动判断根因正确。敏感字段清理是辅助保护，公开任何真实材料前仍需检查具体内容。
 
-## 来源与许可证
+## Scope and limitations
 
-从作者日常 AI 协作流程中提取的独立工具与 Skill，公开版做了路径配置与示例数据隔离。MIT；详见 LICENSE。欢迎通过 GitHub Issues 提交可复现问题，请只附合成数据。
+Set vault_root and work_root in assets/config.json to your own absolute paths before installing the Skill. The bundled relative paths are demonstration settings. Invoke $session-retrospective explicitly; it does not start after every task. An assistant performs the semantic review: this repository contains no model service and cannot establish that a proposed root cause is correct. The public package contains templates and synthetic tests, not actual conversations or a private Obsidian vault.
+
+## Validation record
+
+2026-10-24 · Python: 40 ✓ / 1 skip
+
+## License and attribution
+
+[MIT](LICENSE)
+
+These are documentation editions. Application interfaces, CLI output and executable releases retain the behavior of the current implementation.
+
+[Complete Chinese reference](README.zh-CN.md) · [Language maintenance policy](docs/LOCALIZATION.md)
+
+[Issues](https://github.com/southingchina/session-retrospective/issues) — Report a reproducible issue with synthetic data. Remove credentials and private information from logs.
